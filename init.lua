@@ -28,21 +28,23 @@ vim.cmd [[autocmd FileType netrw set relativenumber]]
 vim.cmd [[autocmd FileType netrw set number]]
 vim.opt.path:append { '**' }
 vim.opt.wildmenu = true
+vim.opt.splitbelow = true
 
 vim.lsp.config('clangd', {
-  cmd = { 'clangd' },
-  filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
-  root_markers = {
-    '.clangd', '.clang-tidy', '.clang-format',
-    'compile_commands.json', 'compile_flags.txt',
-    'configure.ac', '.git',
-  },
+    cmd = { 'clangd' },
+    filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
+    root_markers = {
+        '.clangd', '.clang-tidy', '.clang-format',
+        'compile_commands.json', 'compile_flags.txt',
+        'configure.ac', '.git',
+    },
 })
 
 vim.lsp.enable('clangd')
 -- make LSP provide omni-completion
 vim.api.nvim_create_autocmd('LspAttach', {
-  callback = function(args)
-    vim.bo[args.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
-  end,
+    callback = function(args)
+        vim.bo[args.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+        vim.lsp.completion.enable(true, args.data.client_id, args.buf, {autotrigger=true}) 
+    end,
 })
