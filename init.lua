@@ -43,6 +43,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 -- Setup mini.pick (Fuzzy Finder)
 require('mini.pick').setup({
     mappings = {
+        choose_marked = '<C-q>',
         choose_in_vsplit = '<C-e>',
     }
 })
@@ -56,5 +57,9 @@ vim.keymap.set('n', '<leader>ff', function()
 end, { desc = 'Find Files' })
 
 vim.keymap.set('n', '<leader>fg', function()
-  MiniPick.builtin.grep_live()
+  MiniPick.builtin.grep_live({tool = 'git'})
+end, { desc = 'Find Grep (Content)' })
+
+vim.keymap.set('n', '<leader>ft', function()
+  MiniPick.builtin.grep_live({tool = 'rg' })
 end, { desc = 'Find Grep (Content)' })
