@@ -1,7 +1,10 @@
+require("setup_lualine")
 require("autocomplete")
 vim.cmd [[colorscheme onedark]]
 vim.o.completeopt = 'menu,menuone,noselect'
+vim.opt.updatetime = 250
 vim.opt.guicursor = ""
+vim.opt.splitright = true
 vim.opt.ignorecase = true
 vim.opt.nu = true
 vim.opt.rnu = true
@@ -23,6 +26,8 @@ vim.g.maplocalleader = " "
 vim.api.nvim_set_keymap('n', '<C-o>', '<C-o>zz', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-d>', '<C-d>zz', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-u>', '<C-u>zz', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'n', 'nzz', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'N', 'Nzz', { noremap = true, silent = true })
 vim.cmd [[autocmd FileType netrw set relativenumber]]
 vim.cmd [[autocmd FileType netrw set number]]
 vim.opt.wildmenu = true
