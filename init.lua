@@ -1,5 +1,8 @@
 require("setup_lualine")
 require("autocomplete")
+vim.opt.undofile = true
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 vim.cmd [[colorscheme onedark]]
 vim.o.completeopt = 'menu,menuone,noselect'
 vim.opt.updatetime = 250
@@ -21,8 +24,6 @@ vim.opt.incsearch = true
 vim.opt.termguicolors = true
 vim.opt.scrolloff = 8
 vim.keymap.set("n", "Q", "<nop>")
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 vim.api.nvim_set_keymap('n', '<C-o>', '<C-o>zz', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-d>', '<C-d>zz', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-u>', '<C-u>zz', { noremap = true, silent = true })
@@ -63,3 +64,7 @@ end, { desc = 'Find Grep (Content)' })
 vim.keymap.set('n', '<leader>ft', function()
   MiniPick.builtin.grep_live({tool = 'rg' })
 end, { desc = 'Find Grep (Content)' })
+
+vim.keymap.set('n', '<leader>ut', function()
+    require('undotree').toggle()
+end)
