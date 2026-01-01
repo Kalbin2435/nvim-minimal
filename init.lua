@@ -1,9 +1,22 @@
-require("setup_lualine")
 require("autocomplete")
+require('onedark').setup({
+    transparent = true, -- Your existing setting
+    lualine = {
+        transparent = true,
+    },
+    highlights = {
+        MiniPickNormal = { bg = 'NONE' },
+        MiniPickBorder = { bg = 'NONE' },
+        MiniPickPrompt = { bg = 'NONE' },
+        MiniPickIconFile = { bg = 'NONE' },
+    }
+})
+require('onedark').load()
+require("setup_lualine") -- has to be placed after onedark load
 vim.opt.undofile = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-vim.cmd [[colorscheme onedark]]
+--vim.cmd [[colorscheme onedark]]
 vim.o.completeopt = 'menu,menuone,noselect'
 vim.opt.updatetime = 250
 vim.opt.guicursor = ""
